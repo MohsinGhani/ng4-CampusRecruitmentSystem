@@ -1,0 +1,30 @@
+.container{
+    margin-top: 75px;
+    background: #fff;
+    padding: 15px;
+    border: 3px solid green;
+    border-radius: 10px;
+}
+
+h1,h2{
+    text-transform: uppercase;
+    font-family: Impact, Charcoal, sans-serif;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: #4d4dff;
+    text-shadow: 1px 1px #000;
+}
+
+p{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 20px;
+    text-align: justify;
+    text-shadow: 1px 1px #fff;
+}
+
+ul li{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 20px;
+    text-align: justify;
+    margin-top: 5px;
+}

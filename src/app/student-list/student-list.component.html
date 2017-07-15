@@ -1,0 +1,46 @@
+  <h2>STUDENTS</h2>
+    <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>NAME</th>
+        <th>EMAIL</th>
+        <th>PROGRAM</th>
+        <th>DETAIN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{student.name}}</td>
+        <td>{{student.email}}</td>    
+        <td>{{student.program}}</td>
+        <td><button type="button"  class="btn btn-success btn-sm center-block"  data-target="#detailModal" data-toggle="modal" (click)="showDetail(i)">Detail</button></td>  
+      </tr>
+    </tbody>
+  </table>
+
+  <!--Model Start-->
+        <div class="modal fade" id="detailModal" data-keyboard="false" data-backdrop="static" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Student Detail</h4>
+                <button class="close pull-right" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  <li><strong>Name: </strong>{{studentDetail.name}}</li>
+                  <li><strong>Email: </strong>{{studentDetail.email}}</li>
+                  <li><strong>PROGRAM: </strong>{{studentDetail.program}}</li>
+                  <li><strong>SEMESTER: </strong>{{studentDetail.semester}}</li>
+                  <li><strong>GPA: </strong>{{studentDetail.gpa}}</li>
+                  <li><strong>Contact: </strong>{{studentDetail.phone}}</li>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-outline-warning" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div><!--Model End-->

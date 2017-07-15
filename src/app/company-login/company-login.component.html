@@ -1,0 +1,31 @@
+<app-nav></app-nav>
+<form class="login-form"  (ngSubmit)="SignIn()" #userForm="ngForm" novalidate>
+    <h2 class="heading">Company Login</h2>
+    <div class="form-group">
+      <input type="email" [(ngModel)]="company.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" class="form-control" id="email" name="email" placeholder="email" required>
+      <!--Validation Divs For Email-->
+      <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+        <div [hidden]="!email.errors.required">Email Address is Required!</div>
+        <div [hidden]="!email.errors.pattern">Email is required and format should be mohsin@gmail.com</div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+    <input type="password" [(ngModel)]="company.password" validateEqual="confirmPassword"  name="password"  reverse="true"  #password="ngModel" class="form-control" id="password" placeholder="password" required>
+    <!--Validation Divs For password-->
+    <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+      <div [hidden]="!password.errors.required">Password is Required!</div>
+      <div [hidden]="password.valid || (password.pristine && !userForm.submitted)" class="text-danger">
+        Password is required
+      </div>
+    </div>
+  </div>
+    
+    <div class="form-group row">
+      <div class="offset-sm-1 col-sm-12">
+        <button type="submit" [disabled]="!userForm.form.valid" class="btn form-btn btn-success">Login</button>
+        <button type="button" [disabled]="!userForm.form.valid"  class="btn form-btn btn-success" (click)="SignUp()">Register</button>
+      </div>
+    </div>
+  </form>
+

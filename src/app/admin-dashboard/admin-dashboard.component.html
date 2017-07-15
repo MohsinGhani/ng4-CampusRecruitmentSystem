@@ -1,0 +1,140 @@
+<nav class="navbar navbar-toggleable-md fixed-top bg-success" style=" border-bottom:3px solid #009900">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" style="color:#fff" [routerLink]="['/admin-dashboard']">NTH University</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link nav-button" *ngIf="!studentListMode" (click)="showStudentList()"> Student</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-button" *ngIf="!companyListMode" (click)="showCompanyList()"> Companies</a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+      <ul class="navbar-nav mr-auto">
+      <li class="nav-item" >
+        <button class="nav-link" (click)="logout()">Logout</button>
+      </li>
+    </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="student-container" *ngIf="studentListMode">
+  <h2>STUDENTS</h2>
+  <table class="table table-sm">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>NAME</th>
+      <th>EMAIL</th>
+      <th>STATUS</th>
+      <th>DETAIL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{student.name}}</td>
+      <td>{{student.email}}</td>    
+      <td>{{student.status}}</td>
+      <td><button type="button"  class="btn btn-success btn-sm center-block"  data-target="#detailModal" data-toggle="modal" (click)="showDetail(i)">Detail</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<!--Model Start-->
+        <div class="modal fade" id="detailModal" data-keyboard="false" data-backdrop="static" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Student Detail</h4>
+                <button class="close pull-right" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  <li><strong>Name: </strong>{{studentDetail.name}}</li>
+                  <li><strong>Email: </strong>{{studentDetail.email}}</li>
+                  <li><strong>PROGRAM: </strong>{{studentDetail.program}}</li>
+                  <li><strong>SEMESTER: </strong>{{studentDetail.semester}}</li>
+                  <li><strong>GPA: </strong>{{studentDetail.gpa}}</li>
+                  <li><strong>CONTACT: </strong>{{studentDetail.phone}}</li>
+                  <li><strong>STATUS: </strong>{{studentDetail.status}}</li>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-outline-danger" (click)="blockStudent()" *ngIf="!isBlock"  data-dismiss="modal">BLOCK</button>
+                <button class="btn btn-outline-danger" (click)="unBlockStudent()" *ngIf="isBlock"  data-dismiss="modal">UN-BLOCK</button>
+                <button class="btn btn-outline-warning" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div><!--Model End-->
+  </div>
+
+  <div class="company-container" *ngIf="companyListMode">
+    <h2>COMPANIES</h2>
+    <table class="table table-sm">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>NAME</th>
+      <th>EMAIL</th>
+      <th>STATUS</th>
+      <th>DETAIL</th>
+      <th>POSTS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let company of companies; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{company.name}}</td>
+      <td>{{company.email}}</td>    
+      <td>{{company.status}}</td>
+      <td><button type="button"  class="btn btn-success btn-sm center-block"  data-target="#companyDetail" data-toggle="modal" (click)="showCompanyDetail(i)">Detail</button></td> 
+      <td><button type="button"  class="btn btn-success btn-sm center-block" (click)="getJobs(i);">Jobs</button></td>   
+    </tr>
+  </tbody>
+</table>
+
+<!--Company Model Start-->
+        <div class="modal fade" id="companyDetail" data-keyboard="false" data-backdrop="static" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Company Detail</h4>
+                <button class="close pull-right" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  <li><strong>Name: </strong>{{companyDetail.name}}</li>
+                  <li><strong>Email: </strong>{{companyDetail.email}}</li>
+                  <li><strong>Address: </strong>{{companyDetail.address}}</li>
+                  <li><strong>Address: </strong>{{companyDetail.phone}}</li>
+                  <li><strong>Status: </strong>{{companyDetail.status}}</li>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-outline-danger" (click)="blockCompany()" *ngIf="!isBlock"  data-dismiss="modal">BLOCK</button>
+                <button class="btn btn-outline-danger" (click)="unBlockCompany()" *ngIf="isBlock"  data-dismiss="modal">UN-BLOCK</button>
+                <button class="btn btn-outline-warning" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div><!--Company Model End-->
+  </div>
+  <div class="jobs-container" *ngIf="jobsMode">
+    <h2>Jobs</h2>
+    <div *ngFor="let job of jobs; let i = index ">
+        <div class="jobs">
+          <h5>{{job.title}}</h5>
+          <p>{{job.description}}</p>
+          <button class="btn btn-warning float-right" (click)="deleteJob(i);">Delete</button>
+        </div>
+    </div>
+    <button class="btn btn-success btn-block" (click)="hideJobs();">Cancel</button>
+  </div>
+</div>

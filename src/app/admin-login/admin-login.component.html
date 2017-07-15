@@ -1,0 +1,28 @@
+<app-nav></app-nav>
+<form class="login-form"  (ngSubmit)="login()" #adminLogin="ngForm" novalidate>
+    <h2 class="heading">Admin Login</h2>
+
+      <div class="form-group">
+        <input type="email" [(ngModel)]="user.id" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" class="form-control" id="email" name="email" placeholder="email" required>
+      <!--Validation Divs For Email-->
+      <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+        <div [hidden]="!email.errors.required">Email Address is Required!</div>
+        <div [hidden]="!email.errors.pattern">Email is required and format should be mohsin@gmail.com</div>
+      </div>
+    </div>
+
+  <div class="form-group">
+      <input type="password" [(ngModel)]="user.password" validateEqual="confirmPassword"  name="password"  reverse="true"  #password="ngModel" class="form-control" id="password" placeholder="password" required>
+      <!--Validation Divs For password-->
+      <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+        <div [hidden]="!password.errors.required">Password is Required!</div>
+      </div>
+  </div>
+    
+    <div class="form-group row">
+      <div class="offset-sm-1 col-sm-12">
+        <button type="submit" [disabled]="!adminLogin.form.valid" class="btn form-btn btn-success">Login</button>
+      </div>
+    </div>
+  </form>
+

@@ -1,0 +1,80 @@
+.nav-button{
+    color: #fff !important;
+    margin-top: 5px;
+    font-size: 18px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.container{
+    margin-top: 75px;
+}
+
+.form-container{
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 100px;
+}
+
+.form-container h1{
+    margin-bottom: 15px;
+    margin-top: -20px;
+    color: blueviolet;
+}
+
+.form-container label{
+    color: green;
+}
+
+.alert-danger{
+    float: right;
+    padding: 5px;
+    margin-top: 3px;
+} 
+
+.jobs-container{
+    margin-top: 75px;
+}
+
+.jobs {
+    display:block;
+    width:100%;
+    padding:0.5em;
+    margin-bottom: 5px;
+    margin: 0.5em auto;
+    background:#ecffe6;
+    margin-top: 20px;
+    border-radius: 10px 0px 10px 0px;
+    border: 2px solid #009900;
+    float: left;
+}
+
+.jobs h4,.jobs p{
+    float: left;
+}
+
+.student-list-container{
+    margin-top: 100px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    border: 3px solid green;
+}
+
+.student-list-container table tr{
+    background: #fff;
+    padding: 3px;
+}
+
+.student-list-container table tr:hover{
+    background: #ecffe6;
+    padding: 3px;
+    cursor: default;
+}
+
+.btn-dlt,.btn-edit{
+    float: right;
+    margin-right: 5px;
+    width: 100px;
+}

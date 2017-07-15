@@ -1,0 +1,31 @@
+.nav-btn button{
+    margin-left: 10px;
+    width: 100px;
+}
+
+.login-form{
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #ccffcc;
+    border: 5px solid #009900;
+    border-radius: 0px 40px 0px 40px;
+    margin-top:150px;
+}
+
+.form-btn{
+    margin-right: 10px;
+    min-width: 100px;
+    margin-bottom: -20px;
+}
+.alert-danger{
+    float: right;
+    padding: 5px;
+    margin-top: 3px;
+} 
+
+.heading{
+    text-align:center;
+    margin-top:-20px;
+    margin-bottom:15px;
+}

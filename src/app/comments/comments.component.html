@@ -1,0 +1,47 @@
+<app-nav></app-nav>
+
+<div class="container content">
+  <p class="comment-paragraph">This is my first Angular 4 Project, so may be i could mistake. 
+    If anyone find any kind of mistake kindly let me know to make it proper and suggesion will be praised.</p>
+    <button type="button" data-target="#commentModal" data-toggle="modal" class="btn btn-outline-success btn-block">Comment on Project</button>
+
+    <div *ngFor="let comment of comments | async"  class="comment col-sm-12">
+      <p class="comment-txt">{{comment.comment}}</p>
+      <p class="name">comment by: <strong>{{comment.name}}</strong></p>
+    </div>
+
+    <div class="modal fade" id="commentModal" tabindex="-1" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Post Your Comment</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form #commentForm="ngForm" novalidate>
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" [(ngModel)]="comment.name" #name="ngModel" name="name" id="name" class="form-control" maxlength="30" placeholder="Write Your Name" required/>
+                <!--Validation Divs For Name-->
+                <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+                  <div [hidden]="!name.errors.required">Name is Required!</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Your Comment</label>
+                <textarea id="comment" [(ngModel)]="comment.comment" #userComment="ngModel" name="comment" class="form-control" rows="5" placeholder="Write Your Comment about this Project"  required></textarea>
+                <!--Validation Divs For Comment-->
+                <div *ngIf="userComment.errors && (userComment.dirty || userComment.touched)" class="alert alert-danger">
+                  <div [hidden]="!userComment.errors.required">Name is Required!</div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit"  [disabled]="!commentForm.form.valid" class="btn btn-primary" (click)="postComment()" data-dismiss="modal">Post</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+              </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div><!--Modal-->
+</div>

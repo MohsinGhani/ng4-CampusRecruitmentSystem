@@ -1,0 +1,33 @@
+<nav class="navbar navbar-toggleable-md fixed-top bg-success" style=" border-bottom:3px solid #009900">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" style="color:#fff"  [routerLink]="['/home']">NTH University</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link nav-button" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link nav-button" [routerLink]="['/about-project']">About Project<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link nav-button" [routerLink]="['/about-me']">About Me<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link nav-button" [routerLink]="['/comments']">Comments<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+      <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link nav-button" [routerLink]="['/student-login']">Student</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-button" [routerLink]="['/company-login']">Company</a>
+      </li>
+    </ul>
+    </div>
+  </div>
+</nav>

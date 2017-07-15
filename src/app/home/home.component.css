@@ -1,0 +1,30 @@
+.jumbotron{
+    margin-top: 55px;
+    background-color: #fff;
+}
+
+.nav-button{
+    color: #fff !important;
+    margin-top: 5px;
+    font-size: 18px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.col-lg-4 h3{
+    text-align: center;
+}
+
+.image{
+    height: 170px;
+    width: 170px;
+    margin: 0 auto;
+}
+
+.description{
+    min-height: 120px;
+}
+
+#carouselExampleControls{
+    height: 600px;
+}

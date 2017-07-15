@@ -1,0 +1,27 @@
+.nav-button{
+    color: #fff !important;
+    margin-top: 5px;
+    font-size: 18px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.container{
+    margin-top:75px;
+}
+
+.jobs {
+    display:block;
+    width:100%;
+    padding:0.5em;
+    margin-bottom: 5px;
+    margin: 0.5em auto;
+    background:#ecffe6;
+    margin-top: 20px;
+    border-radius: 10px 0px 10px 0px;
+    border: 2px solid #009900;
+}
+
+.jobs, .jobs p{
+    float: left;
+}

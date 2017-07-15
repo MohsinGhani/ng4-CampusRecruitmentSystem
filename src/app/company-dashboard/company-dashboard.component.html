@@ -1,0 +1,104 @@
+<nav class="navbar navbar-toggleable-md fixed-top bg-success" style=" border-bottom:3px solid #009900">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" style="color:#fff" [routerLink]="['/company-dashboard']">NTH University</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link nav-button" (click)="showJobs();">My Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-button" (click)="showJobsForm();">Add Job</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-button" (click)="showStudentList();">Student List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-button" (click)="showProfile();">Profile</a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+      <ul class="navbar-nav mr-auto">
+      <li class="nav-item" >
+        <button class="nav-link" (click)="logout()">Logout</button>
+      </li>
+    </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container"> 
+    <form class="form-container" [formGroup]="myForms" (ngSubmit)="addPost(myForms.value)" *ngIf="addJobsModes">
+        <h1>POST YOUR JOB</h1><hr>
+        <div class="form-group">
+            <label>Job Title</label>
+            <input type="text" [formControl]="myForms.controls['title']"  class="form-control" placeholder="Write Job Title">
+            <!--Validation Divs For id-->
+            <small *ngIf="myForms.controls['title'].hasError('required') && myForms.controls['title'].touched" class="alert alert-danger">Job Title is Required</small>
+        </div>
+        <div class="form-group">
+            <label>Job Description</label>
+            <textarea type="text" [formControl]="myForms.controls['description']" class="form-control" placeholder="Write Job Description"></textarea>
+            <small *ngIf="myForms.controls['description'].hasError('required') && myForms.controls['description'].touched" class="alert alert-danger">Description is required</small>
+        </div>
+        <button type="submit" class="btn btn-success btn-block" [disabled]="!myForms.valid">Post</button>
+        <button type="submit" class="btn btn-success btn-block" (click)="showJobs();" >Cancel</button>
+    </form>
+
+    <div class="jobs-container" *ngIf="jobsMode">
+      <h1>Your Posted Jobs</h1>
+      <div  class="jobs" *ngFor="let job of myPostedJobs; let i = index">
+            <h4 class="col-sm-12">{{job.title}}</h4>
+            <p class="col-sm-12">{{job.description}}</p>
+            <!--<button type="submit" class="btn btn-success float-right" (click)="editJob(i);" >Edit</button>-->
+            <button type="button" data-target="#commentModal" data-toggle="modal" (click)="showModal(i)" class="btn btn-success btn-edit">Edit</button>
+            <button type="submit" class="btn btn-success btn-dlt" (click)="deleteJob(i);" >Delete</button>
+      </div>
+      
+  <!--Modal Start-->
+  <div class="modal fade" id="commentModal" tabindex="-1" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Jobs</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+      <div class="modal-body">
+            <form #editForm="ngForm" novalidate>
+              <div class="form-group">
+                <label for="name">Job Title</label>
+                <input type="text" [(ngModel)]="editJobData.title" #title="ngModel" name="title" id="title" class="form-control" maxlength="50"  required/>
+                <!--Validation Divs For Name-->
+                <div *ngIf="title.errors && (title.dirty || title.touched)" class="alert alert-danger">
+                  <div [hidden]="!title.errors.required">Title is Required!</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="description">Job Description</label>
+                <textarea id="description" [(ngModel)]="editJobData.description" #description="ngModel" name="description" class="form-control" rows="5" required></textarea>
+                <!--Validation Divs For Comment-->
+                <div *ngIf="description.errors && (description.dirty || description.touched)" class="alert alert-danger">
+                  <div [hidden]="!description.errors.required">Description is Required!</div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit"  [disabled]="!editForm.form.valid" class="btn btn-success" (click)="editJob();" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+              </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div><!--Modal-->
+  </div>
+
+  <div class="student-list-container" *ngIf="studentListMode">
+        <app-student-list></app-student-list>
+  </div><!--student-list-container-->
+
+  <div class="profile-container" *ngIf="profileMode">
+    <app-company-profile></app-company-profile>
+  </div><!--profile-container-->
+</div>
+
